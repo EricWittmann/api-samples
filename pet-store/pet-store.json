@@ -1,7 +1,7 @@
 {
     "swagger":"2.0",
     "info":{
-        "description":"This is a sample server Petstore server via JSON.",
+        "description":"This is a sample server Petstore server via JSON.  (modified on branch!)",
         "version":"1.0.0",
         "title":"Swagger Petstore (JSON)",
         "termsOfService":"http://helloreverb.com/terms/",
