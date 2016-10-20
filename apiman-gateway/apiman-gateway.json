@@ -1,0 +1,225 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Gateway Configuration API",
+    "description": "A REST API used to dynamically configure the API Gateway.",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "Apiman Open Source Project",
+      "email": "apiman@redhat.com",
+      "url": "http://apiman.io"
+    },
+    "license": {
+      "name": "Apache 2",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/gateway-api",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/system/status": {
+      "get": {
+        "description": "Returns the current status of the system.",
+        "operationId": "getSystemStatus",
+        "responses": {
+          "200": {
+            "description": "the system status",
+            "schema": {
+              "$ref": "#/definitions/SystemStatus"
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/apis": {
+      "put": {
+        "description": "Publishes an API to the gateway.",
+        "operationId": "publishApi",
+        "parameters": [
+          {
+            "name": "api",
+            "in": "body",
+            "description": "The api to publish.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Api"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If the api is published successfully."
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Api": {
+      "type": "object",
+      "required": [
+        "publicAPI",
+        "organizationId",
+        "apiId",
+        "version",
+        "endpoint",
+        "endpointType",
+        "endpointContentType"
+      ],
+      "properties": {
+        "publicAPI": {
+          "type": "boolean"
+        },
+        "organizationId": {
+          "type": "string"
+        },
+        "apiId": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "endpoint": {
+          "type": "string"
+        },
+        "endpointType": {
+          "type": "string",
+          "enum": [
+            "soap",
+            "rest"
+          ]
+        },
+        "endpointContentType": {
+          "type": "string",
+          "enum": [
+            "json",
+            "xml"
+          ]
+        }
+      },
+      "example": {
+        "publicAPI" : true,
+        "organizationId" : "Myorg",
+        "apiId" : "my-api",
+        "version" : "1.7",
+        "endpoint" : "http://www.example.org/my-api",
+        "endpointType" : "rest",
+        "endpointContentType" : "json"
+      }
+    },
+    "ApiEndpoint": {
+      "type": "object",
+      "required": [
+        "endpoint"
+      ],
+      "properties": {
+        "endpoint": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "endpoint": "http://localhost:8080/gateway/Myorg/my-api/1.7/"
+      }
+    },
+    "Client": {
+      "type": "object",
+      "required": [
+        "organizationId",
+        "clientId",
+        "version",
+        "apiKey"
+      ],
+      "properties": {
+        "organizationId": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "apiKey": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "organizationId": "Myorg",
+        "clientId": "my-client",
+        "version": "1.0",
+        "apiKey": "1741234-239481-29384-1294832-129348"
+      }
+    },
+    "SystemStatus": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "version"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "id": "apiman-gateway-api",
+        "name": "APIMan Gateway Configuration API",
+        "description": "This API can be used to dynamically configure the API Gateway.",
+        "version": "1.2.8.Final"
+      }
+    },
+    "Error": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "example": {
+        "code": 10002,
+        "message": "Failed to publish the API."
+      }
+    }
+  }
+}
