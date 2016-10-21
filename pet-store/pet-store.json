@@ -245,14 +245,13 @@
                     "pet"
                 ],
                 "summary":"Find pet by ID",
-                "description":"Returns a single pet",
+                "description":"Returns a single pet.",
                 "operationId":"getPetById",
                 "consumes":[
                     "application/x-www-form-urlencoded"
                 ],
                 "produces":[
-                    "application/xml",
-                    "application/json"
+                    "application/xml",                    "application/json"
                 ],
                 "parameters":[
                     {
@@ -272,7 +271,7 @@
                         }
                     },
                     "400":{
-                        "description":"Invalid ID supplied"
+                        "description":"Invalid petID supplied"
                     },
                     "404":{
                         "description":"Pet not found"
