@@ -940,6 +940,9 @@
                 "lastName":{
                     "type":"string"
                 },
+                "birthday":{
+                    "type":"date"
+                },
                 "email":{
                     "type":"string"
                 },
