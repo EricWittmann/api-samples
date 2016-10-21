@@ -6,7 +6,7 @@
     "description": "A REST API used to dynamically configure the API Gateway.",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "name": "Apiman Open Source Project",
+      "name": "APIMan Open Source Project",
       "email": "apiman@redhat.com",
       "url": "http://apiman.io"
     },
