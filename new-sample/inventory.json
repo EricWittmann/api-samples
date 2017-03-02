@@ -5,6 +5,18 @@
         "description": "This is a simple example API for retrieving inventory information."
     },
     "paths": {
-        "/": {}
+        "/": {
+            "get": {
+                "summary": "List inventory items",
+                "description": "Returns a list of all the inventory items found in the system."
+            },
+            "post": {
+                "summary": "Create new inventory item",
+                "description": "Creates a brand new inventory item and stores it in the system."
+            }
+        }
+    },
+    "definitions": {
+        "InventoryItem": {}
     }
 }
