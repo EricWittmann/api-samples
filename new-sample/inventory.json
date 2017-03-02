@@ -1,1 +1,10 @@
-{"swagger":"2.0","info":{"title":"Inventory API","description":"This is a simple example API for retrieving inventory information."}}
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Inventory API",
+        "description": "This is a simple example API for retrieving inventory information."
+    },
+    "paths": {
+        "/": {}
+    }
+}
