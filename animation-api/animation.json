@@ -4,8 +4,8 @@
         "title": "Animation API",
         "description": "An API to manage our commercial animations.",
         "license": {
-            "name": "Apache 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+            "name": "Custom License",
+            "url": "https://tools.ietf.org/rfc/rfc1918.txt"
         }
     }
 }
