@@ -3,9 +3,14 @@
     "info": {
         "title": "Animation API",
         "description": "An API to manage our commercial animations.",
+        "contact": {
+            "name": "Red Hat",
+            "url": "http://www.redhat.com",
+            "email": "info@redhat.com"
+        },
         "license": {
-            "name": "Custom License",
-            "url": "https://tools.ietf.org/rfc/rfc1918.txt"
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
         }
     }
 }
