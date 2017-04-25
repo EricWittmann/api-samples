@@ -1,51 +1,191 @@
 {
-  "swagger" : "2.0",
-  "info" : {
-    "version" : "1.0.0",
-    "title" : "FIS Gateway"
-  },
-  "host" : "0.0.0.0",
-  "basePath" : "/demos",
-  "tags" : [ {
-    "name" : "sourcegateway"
-  } ],
-  "schemes" : [ "http" ],
-  "paths" : {
-    "/sourcegateway/balance/{acctid}" : {
-      "get" : {
-        "tags" : [ "sourcegateway" ],
-        "parameters" : [ {
-          "name" : "acctid",
-          "in" : "path",
-          "description" : "",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "x-camelContextId" : "camelContext-a73e7fe1-456e-4e15-9926-fae906325f11",
-        "x-routeId" : "route1"
-      }
+    "swagger": "2.0",
+    "info": {
+        "title": "FIS Gateway",
+        "description": "This is a cool description of the API.",
+        "contact": {
+            "name": "Eric Wittmann",
+            "url": "http://www.apidesigner.org",
+            "email": "eric.wittmann@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        },
+        "version": "1.0.0"
     },
-    "/sourcegateway/profile/{acctid}" : {
-      "get" : {
-        "tags" : [ "sourcegateway" ],
-        "parameters" : [ {
-          "name" : "acctid",
-          "in" : "path",
-          "description" : "",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "x-camelContextId" : "camelContext-a73e7fe1-456e-4e15-9926-fae906325f11",
-        "x-routeId" : "route2"
-      }
+    "host": "0.0.0.0",
+    "basePath": "/demos",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/sourcegateway/balance/{acctid}": {
+            "get": {
+                "tags": [
+                    "sourcegateway"
+                ],
+                "summary": "Get account balance",
+                "parameters": [
+                    {
+                        "name": "acctid",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "API_KEY",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "moneysource",
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The account balance.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid account id format"
+                    },
+                    "404": {
+                        "description": "Account not found."
+                    },
+                    "503": {}
+                },
+                "x-camelContextId": "camelContext-a73e7fe1-456e-4e15-9926-fae906325f11",
+                "x-routeId": "route1"
+            }
+        },
+        "/sourcegateway/profile/{acctid}": {
+            "get": {
+                "tags": [
+                    "sourcegateway"
+                ],
+                "summary": "Retrieve account profile",
+                "parameters": [
+                    {
+                        "name": "acctid",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "API_KEY",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "moneysource",
+                        "in": "formData",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    },
+                    "400": {},
+                    "404": {},
+                    "503": {}
+                },
+                "x-camelContextId": "camelContext-a73e7fe1-456e-4e15-9926-fae906325f11",
+                "x-routeId": "route2"
+            }
+        },
+        "/sourcegateway/transfer": {
+            "post": {
+                "tags": [
+                    "sourcegateway"
+                ],
+                "summary": "Transfer balance between accounts",
+                "parameters": [
+                    {
+                        "name": "API_KEY",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "moneysource",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "acctid",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "recepid",
+                        "in": "formData",
+                        "type": "string"
+                    },
+                    {
+                        "name": "amt",
+                        "in": "formData",
+                        "type": "number"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Profile"
+                        }
+                    },
+                    "400": {},
+                    "404": {},
+                    "503": {}
+                },
+                "x-camelContextId": "camelContext-a73e7fe1-456e-4e15-9926-fae906325f11",
+                "x-routeId": "route3"
+            }
+        }
     },
-    "/sourcegateway/transfer" : {
-      "post" : {
-        "tags" : [ "sourcegateway" ],
-        "parameters" : [ ],
-        "x-camelContextId" : "camelContext-a73e7fe1-456e-4e15-9926-fae906325f11",
-        "x-routeId" : "route3"
-      }
+    "tags": [
+        {
+            "name": "sourcegateway"
+        }
+    ],
+    "definitions": {
+        "Profile": {
+            "title": "Root Type",
+            "description": "The root of the Profile type's schema.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "acctname": {
+                    "type": "string"
+                },
+                "balance": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "ssn": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "addr": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            }
+        }
     }
-  }
 }
