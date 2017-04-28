@@ -2,6 +2,108 @@
     "swagger": "2.0",
     "info": {
         "title": "Dog House API",
-        "description": "An API that manages a list of dog images."
+        "description": "An API that manages a list of dog images.",
+        "contact": {
+            "name": "Eric Wittmann",
+            "url": "https://ericwittmann.github.io",
+            "email": "eric.wittmann@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "paths": {
+        "/dogs": {
+            "get": {
+                "summary": "List Dogs",
+                "description": "Gets a list of dogs organized by breed.  Optionally ask for only dogs by a particular breed.",
+                "parameters": [
+                    {
+                        "name": "breed",
+                        "in": "query",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "#/definitions/Breed"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/dogs/{dogId}": {
+            "put": {
+                "summary": "Vote for a dog",
+                "description": "Cast a vote for a particular dog ... because you love her so much!",
+                "parameters": [
+                    {
+                        "name": "dogId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/Vote"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {}
+                }
+            },
+            "delete": {
+                "summary": "Un-Vote for a dog",
+                "description": "Remove your vote for a particular dog - I guess you no longer love her?!",
+                "parameters": [
+                    {
+                        "name": "dogId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {}
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Dog": {
+            "properties": {
+                "url": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "favorites": {
+                    "type": "integer"
+                },
+                "breed": {
+                    "type": "string"
+                }
+            }
+        },
+        "Breed": {
+            "properties": {
+                "dogs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Dog"
+                    }
+                },
+                "breed": {
+                    "type": "string"
+                }
+            }
+        },
+        "Vote": {}
     }
 }
