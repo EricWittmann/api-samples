@@ -38,9 +38,30 @@
             }
         },
         "/dogs/{dogId}": {
+            "get": {
+                "summary": "Get a single dog",
+                "description": "Returns the information about a single dog.",
+                "parameters": [
+                    {
+                        "name": "dogId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Dog"
+                        }
+                    },
+                    "404": {}
+                }
+            }
+        },
+        "/dogs/{dogId}/vote": {
             "put": {
                 "summary": "Vote for a dog",
-                "description": "Cast a vote for a particular dog ... because you love her so much!",
+                "description": "Case a vote for a dog because you love her SO much.",
                 "parameters": [
                     {
                         "name": "dogId",
@@ -55,15 +76,23 @@
                     }
                 ],
                 "responses": {
-                    "201": {},
+                    "201": {
+                        "description": "The vote was successfully cast.  Updated dog info returned.",
+                        "schema": {
+                            "$ref": "#/definitions/Dog"
+                        }
+                    },
                     "400": {
-                        "description": "If you've already voted for the dog."
+                        "description": "If a vote for this dog was already cast."
+                    },
+                    "404": {
+                        "description": "Dog not found."
                     }
                 }
             },
             "delete": {
                 "summary": "Un-Vote for a dog",
-                "description": "Remove your vote for a particular dog - I guess you no longer love her?!",
+                "description": "Remove your vote for a dog...",
                 "parameters": [
                     {
                         "name": "dogId",
@@ -72,9 +101,17 @@
                     }
                 ],
                 "responses": {
-                    "204": {},
+                    "200": {
+                        "description": "Vote was revoked successfully, updated dog info returned.",
+                        "schema": {
+                            "$ref": "#/definitions/Dog"
+                        }
+                    },
                     "400": {
-                        "description": "If you haven't yet voted for this dog."
+                        "description": "No vote was previously cast for this dog."
+                    },
+                    "404": {
+                        "description": "Dog not found."
                     }
                 }
             }
