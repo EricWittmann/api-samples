@@ -55,7 +55,10 @@
                     }
                 ],
                 "responses": {
-                    "201": {}
+                    "201": {},
+                    "400": {
+                        "description": "If you've already voted for the dog."
+                    }
                 }
             },
             "delete": {
@@ -69,7 +72,10 @@
                     }
                 ],
                 "responses": {
-                    "204": {}
+                    "204": {},
+                    "400": {
+                        "description": "If you haven't yet voted for this dog."
+                    }
                 }
             }
         }
