@@ -34,6 +34,7 @@
                 "parameters": [
                     {
                         "in": "body",
+                        "name":"body",
                         "description": "Sends the information required to create a new Address Book.",
                         "schema": {
                             "$ref": "#/definitions/NewAddressBook"
