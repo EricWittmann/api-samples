@@ -71,7 +71,9 @@
                         "type": "#/definitions/Address"
                     }
                 },
-                "id": {}
+                "id": {
+                    "type": "string"
+                }
             }
         },
         "Address": {
