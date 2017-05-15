@@ -3,6 +3,15 @@
     "info": {
         "title": "Concurrent Editing POC API",
         "description": "The server REST API to the Concurrent Editing proof of concept.",
+        "contact": {
+            "name": "Eric Wittmann",
+            "url": "https://github.com/EricWittmann/api-samples/tree/master/innovation-week/ce-api",
+            "email": "eric.wittmann@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        },
         "version": "1.0.0"
     },
     "paths": {
