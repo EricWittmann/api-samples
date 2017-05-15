@@ -2,6 +2,92 @@
     "swagger": "2.0",
     "info": {
         "title": "Concurrent Editing POC API",
-        "description": "The server REST API to the Concurrent Editing proof of concept."
+        "description": "The server REST API to the Concurrent Editing proof of concept.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/addressBooks": {
+            "get": {
+                "summary": "List Address Books",
+                "description": "Gets a list of all Address Books.",
+                "responses": {
+                    "200": {
+                        "description": "Returns all Address Books managed by the server.",
+                        "schema": {
+                            "$ref": "#/definitions/AddressBook"
+                        }
+                    }
+                }
+            }
+        },
+        "/addressBooks/{addressBookId}": {
+            "get": {
+                "summary": "Get a single Address Book",
+                "description": "Gets a single Address Book by its unique ID.",
+                "responses": {
+                    "200": {
+                        "description": "When an Address Book is found successfully (and returned).",
+                        "schema": {
+                            "$ref": "#/definitions/AddressBook"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete an Address Book",
+                "description": "Deletes a single Address Book by its unique ID.",
+                "responses": {
+                    "204": {
+                        "description": "Indicates that the Address Book was deleted successfully."
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "addressBookId",
+                    "in": "path",
+                    "description": "The ID of a single address book.",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "AddressBook": {
+            "properties": {
+                "addresses": {
+                    "type": "array",
+                    "items": {
+                        "type": "#/definitions/Address"
+                    }
+                }
+            }
+        },
+        "Address": {
+            "properties": {
+                "Address1": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "string"
+                },
+                "Address2": {
+                    "type": "string"
+                },
+                "City": {
+                    "type": "string"
+                },
+                "State": {
+                    "type": "string"
+                },
+                "Zip": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                }
+            }
+        }
     }
 }
