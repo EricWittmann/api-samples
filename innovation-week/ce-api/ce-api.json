@@ -1,0 +1,7 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Concurrent Editing POC API",
+        "description": "The server REST API to the Concurrent Editing proof of concept."
+    }
+}
