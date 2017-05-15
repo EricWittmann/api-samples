@@ -27,6 +27,27 @@
                         }
                     }
                 }
+            },
+            "post": {
+                "summary": "Create a New Address Book",
+                "description": "Creates a new address book, returning the generated ID of the new book.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "description": "Sends the information required to create a new Address Book.",
+                        "schema": {
+                            "$ref": "#/definitions/NewAddressBook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Response returned when the Address Book was successfully created.",
+                        "schema": {
+                            "$ref": "#/definitions/AddressBook"
+                        }
+                    }
+                }
             }
         },
         "/addressBooks/{addressBookId}": {
@@ -73,6 +94,9 @@
                 },
                 "id": {
                     "type": "string"
+                },
+                "name": {
+                    "type": "string"
                 }
             }
         },
@@ -93,6 +117,16 @@
                 "zip": {
                     "type": "string"
                 },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "NewAddressBook": {
+            "title": "Root Type",
+            "description": "The root of the NewAddressBook type's schema.",
+            "type": "object",
+            "properties": {
                 "name": {
                     "type": "string"
                 }
