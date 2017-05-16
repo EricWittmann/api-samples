@@ -33,8 +33,8 @@
                 "description": "Creates a new address book, returning the generated ID of the new book.",
                 "parameters": [
                     {
+                        "name": "body",
                         "in": "body",
-                        "name":"body",
                         "description": "Sends the information required to create a new Address Book.",
                         "schema": {
                             "$ref": "#/definitions/NewAddressBook"
@@ -119,6 +119,9 @@
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "country": {
                     "type": "string"
                 }
             }
