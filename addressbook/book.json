@@ -1,0 +1,7 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Address Book API",
+        "description": "Adderss book API description."
+    }
+}
