@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Contacts API",
-    "description": "Some description of the Contacts API goes here!",
+    "description": "Some description of the Contacts API goes here, I am told.",
     "version": "1.0.1"
   },
   "paths": {
