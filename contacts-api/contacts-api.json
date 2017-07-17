@@ -3,7 +3,7 @@
   "info": {
     "title": "Contacts API",
     "description": "Some description of the Contacts API goes here, I am told.",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "paths": {
     "/contacts": {
