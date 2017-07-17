@@ -29,7 +29,9 @@
               "$ref": "#/definitions/Contacts"
             }
           },
-          "401": {}
+          "401": {
+            "description": "When the user is not authorized."
+          }
         }
       },
       "post": {
