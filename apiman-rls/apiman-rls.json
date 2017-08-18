@@ -1,19 +1,19 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
     "title": "Rate Limiter API",
     "description": "A REST API used by clients to access the standalone Rate Limiter micro-service.",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
       "name": "Apiman Open Source Project",
-      "email": "apiman@redhat.com",
-      "url": "http://apiman.io"
+      "url": "http://apiman.io",
+      "email": "apiman@redhat.com"
     },
     "license": {
       "name": "Apache 2",
       "url": "http://www.apache.org/licenses/LICENSE-2.0"
-    }
+    },
+    "version": "1.0.1"
   },
   "host": "localhost:8080",
   "basePath": "/limits",
@@ -38,18 +38,18 @@
             "in": "query",
             "description": "which page of results to return",
             "required": false,
-            "default": 1,
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "default": 1
           },
           {
             "name": "pageSize",
             "in": "query",
             "description": "number of results per page to return",
             "required": false,
-            "default": 20,
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "default": 20
           }
         ],
         "responses": {
@@ -216,7 +216,6 @@
   },
   "definitions": {
     "Limit": {
-      "type": "object",
       "required": [
         "id",
         "value",
@@ -227,22 +226,22 @@
         "createdOn",
         "modifiedOn"
       ],
+      "type": "object",
       "properties": {
         "id": {
           "type": "string"
         },
         "value": {
-          "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "type": "integer"
         },
         "maxValue": {
-          "type": "integer",
           "format": "int64",
-          "minimum": 1
+          "minimum": 1,
+          "type": "integer"
         },
         "period": {
-          "type": "string",
           "enum": [
             "second",
             "minute",
@@ -250,24 +249,25 @@
             "day",
             "month",
             "year"
-          ]
+          ],
+          "type": "string"
         },
         "remainingValue": {
-          "type": "integer",
           "format": "int64",
-          "minimum": 0
+          "minimum": 0,
+          "type": "integer"
         },
         "resetOn": {
-          "type": "string",
-          "format": "dateTime"
+          "format": "dateTime",
+          "type": "string"
         },
         "createdOn": {
-          "type": "string",
-          "format": "dateTime"
+          "format": "dateTime",
+          "type": "string"
         },
         "modifiedOn": {
-          "type": "string",
-          "format": "dateTime"
+          "format": "dateTime",
+          "type": "string"
         },
         "links": {
           "$ref": "#/definitions/LimitLinks"
@@ -290,12 +290,12 @@
       }
     },
     "LimitLinks": {
-      "type": "object",
       "required": [
         "self",
         "increment",
         "delete"
       ],
+      "type": "object",
       "properties": {
         "self": {
           "type": "string"
@@ -316,21 +316,21 @@
     "LimitList": {
       "type": "array",
       "items": {
-        "type": "object",
         "required": [
           "page",
           "pageSize",
           "limits",
           "links"
         ],
+        "type": "object",
         "properties": {
           "page": {
-            "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "type": "integer"
           },
           "pageSize": {
-            "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "type": "integer"
           },
           "limits": {
             "type": "array",
@@ -386,12 +386,12 @@
       }
     },
     "LimitListLinks": {
-      "type": "object",
       "required": [
         "self",
         "prevPage",
         "nextPage"
       ],
+      "type": "object",
       "properties": {
         "self": {
           "type": "string"
@@ -419,8 +419,8 @@
       ],
       "properties": {
         "incrementBy": {
-          "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "type": "integer"
         }
       },
       "example": {
@@ -439,15 +439,14 @@
           "type": "string"
         },
         "value": {
-          "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "type": "integer"
         },
         "maxValue": {
-          "type": "integer",
-          "format": "int64"
+          "format": "int64",
+          "type": "integer"
         },
         "period": {
-          "type": "string",
           "enum": [
             "second",
             "minute",
@@ -455,7 +454,8 @@
             "day",
             "month",
             "year"
-          ]
+          ],
+          "type": "string"
         },
         "tz": {
           "type": "string"
@@ -474,8 +474,8 @@
       ],
       "properties": {
         "resetOn": {
-          "type": "string",
-          "format": "dateTime"
+          "format": "dateTime",
+          "type": "string"
         }
       },
       "example": {
@@ -489,8 +489,8 @@
       ],
       "properties": {
         "code": {
-          "type": "integer",
-          "format": "int32"
+          "format": "int32",
+          "type": "integer"
         },
         "message": {
           "type": "string"
