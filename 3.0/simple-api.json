@@ -175,6 +175,20 @@
         "type": "http",
         "description": "Basic auth.",
         "scheme": "Basic"
+      },
+      "OAuth": {
+        "type": "oauth2",
+        "description": "OAuth authentication.",
+        "flows": {
+          "implicit": {
+            "tokenUrl": "http://www.example.com/token/",
+            "refreshUrl": "http://www.example.com/refresh/",
+            "scopes": {
+              "client": "Client scope.",
+              "admin": "Admin scope."
+            }
+          }
+        }
       }
     }
   },
