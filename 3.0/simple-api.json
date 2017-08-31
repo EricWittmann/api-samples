@@ -178,14 +178,47 @@
       },
       "Implicit OAuth": {
         "type": "oauth2",
-        "description": "Password OAuth 2.0 auth.",
+        "description": "Implicit oauth 2.0 auth.",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "urn:auth:implicit",
+            "refreshUrl": "urn:refresh:implicit",
+            "scopes": {
+              "implicit": "implicit scope"
+            }
+          }
+        }
+      },
+      "Password OAuth": {
+        "type": "oauth2",
+        "description": "Password oauth 2.0 auth.",
         "flows": {
           "password": {
             "tokenUrl": "urn:token:password",
-            "refreshUrl": "urn:refresh:password",
+            "refreshUrl": "urn:token:refresh",
+            "scopes": {
+              "scope1": "Description 1.",
+              "scope2": "Description 2."
+            }
+          }
+        }
+      },
+      "Multi-OAuth": {
+        "type": "oauth2",
+        "description": "Multiple OAuth flows.",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "urn:token:client",
+            "refreshUrl": "urn:refresh:client",
             "scopes": {
               "client": "Client scope."
             }
+          },
+          "authorizationCode": {
+            "authorizationUrl": "urn:auth:auth",
+            "tokenUrl": "urn:token:auth",
+            "refreshUrl": "urn:refresh:auth",
+            "scopes": {}
           }
         }
       }
