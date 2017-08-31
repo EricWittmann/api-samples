@@ -3,6 +3,11 @@
   "info": {
     "title": "Simple OAI 3.0.0 API",
     "description": "A simple API using OpenAPI 3.0.0.",
+    "contact": {
+      "name": "Example Org",
+      "url": "http://www.example.org",
+      "email": "contact@example.org"
+    },
     "license": {
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0"
