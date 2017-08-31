@@ -178,13 +178,12 @@
       },
       "OAuth": {
         "type": "oauth2",
-        "description": "OAuth authentication.",
+        "description": "OAuth auth.",
         "flows": {
           "implicit": {
-            "tokenUrl": "http://www.example.com/token/",
-            "refreshUrl": "http://www.example.com/refresh/",
+            "tokenUrl": "urn:token",
+            "refreshUrl": "urn:refresh",
             "scopes": {
-              "client": "Client scope.",
               "admin": "Admin scope."
             }
           }
