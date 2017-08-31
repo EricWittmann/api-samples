@@ -176,15 +176,15 @@
         "description": "Basic auth.",
         "scheme": "Basic"
       },
-      "OAuth": {
+      "Implicit OAuth": {
         "type": "oauth2",
-        "description": "OAuth auth.",
+        "description": "Password OAuth 2.0 auth.",
         "flows": {
-          "implicit": {
-            "tokenUrl": "urn:token",
-            "refreshUrl": "urn:refresh",
+          "password": {
+            "tokenUrl": "urn:token:password",
+            "refreshUrl": "urn:refresh:password",
             "scopes": {
-              "admin": "Admin scope."
+              "client": "Client scope."
             }
           }
         }
