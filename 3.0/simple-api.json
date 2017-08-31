@@ -168,5 +168,24 @@
         }
       }
     }
-  }
+  },
+  "components": {
+    "securitySchemes": {
+      "Basic": {
+        "type": "http",
+        "description": "Basic auth.",
+        "scheme": "Basic"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "foo",
+      "description": "The Foo tag."
+    },
+    {
+      "name": "bar",
+      "description": "The bar tag."
+    }
+  ]
 }
