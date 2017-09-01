@@ -175,6 +175,24 @@
     }
   },
   "components": {
+    "schemas": {
+      "Address": {
+        "properties": {
+          "name": {},
+          "street": {},
+          "city": {},
+          "state": {},
+          "zip": {}
+        }
+      },
+      "User": {
+        "properties": {
+          "address": {
+            "$ref": "#/definitions/Address"
+          }
+        }
+      }
+    },
     "securitySchemes": {
       "Basic": {
         "type": "http",
