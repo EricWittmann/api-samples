@@ -171,6 +171,9 @@
             }
           }
         }
+      },
+      "put": {
+        "summary": "Update API version details"
       }
     }
   },
