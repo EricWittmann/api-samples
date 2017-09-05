@@ -173,7 +173,10 @@
         }
       },
       "put": {
-        "summary": "Update API version details"
+        "summary": "Update API version details",
+        "requestBody": {
+          "description": "A description of the request body goes here."
+        }
       }
     }
   },
