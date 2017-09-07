@@ -174,8 +174,19 @@
       },
       "put": {
         "summary": "Update API version details",
+        "responses": {
+          "200": {}
+        },
         "requestBody": {
-          "description": "A description of the request body goes here."
+          "description": "A description of the request body goes here.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemasUser"
+              }
+            }
+          },
+          "required": true
         }
       }
     }
