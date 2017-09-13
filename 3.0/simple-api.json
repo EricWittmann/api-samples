@@ -272,6 +272,10 @@
     {
       "name": "bar",
       "description": "The bar tag."
+    },
+    {
+      "name": "baz",
+      "description": "The baz tag.\n"
     }
   ]
 }
