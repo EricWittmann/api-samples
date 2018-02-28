@@ -1,0 +1,12 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple 3.0.1 API",
+    "description": "Just a simple 3.0.1 API.",
+    "license": {
+      "name": "GNU AGPLv3",
+      "url": "https://www.gnu.org/licenses/agpl.txt"
+    },
+    "version": "1.0.1"
+  }
+}
