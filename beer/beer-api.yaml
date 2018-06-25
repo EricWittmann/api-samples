@@ -1,0 +1,242 @@
+---
+openapi: 3.0.0
+info:
+  title: Full Beer API
+  description: The absolute full beer api!
+  contact:
+    name: Eric Wittmann
+    url: http://apicur.io
+    email: eric.wittmann@gmail.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0.0
+servers:
+- url: https://example.org/{server}
+  description: Foo bar.
+  variables:
+    server:
+      default: baz
+      description: This is the des...
+paths:
+  /beers:
+    get:
+      summary: Get Beers
+      operationId: getBeers
+      parameters:
+      - name: style
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Beer'
+      security:
+      - Basic: []
+    post:
+      summary: Add a Beer
+      operationId: addBeer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Beer'
+        required: true
+      responses:
+        201: {}
+  /beers/{beerId}:
+    get:
+      summary: Get a Beer
+      operationId: getBeer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Beer'
+              examples:
+                Example-1:
+                  value: {}
+    put:
+      summary: Update a Beer
+      operationId: updateBeer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Beer'
+        required: true
+      responses:
+        202: {}
+    delete:
+      summary: Delete a Beer
+      operationId: deleteBeer
+      responses:
+        204: {}
+    parameters:
+    - name: beerId
+      in: path
+      required: true
+      schema:
+        format: int32
+        type: integer
+  /breweries:
+    get:
+      summary: Get Breweries
+      operationId: getBreweries
+      parameters:
+      - name: city
+        in: query
+        schema:
+          type: string
+      - name: state
+        in: query
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Brewery'
+              examples:
+                Example-1:
+                  value: |-
+                    [
+                        {
+                            "id": "value-1"
+                        }
+                    ]
+    post:
+      summary: Add a Brewery
+      operationId: addBrewery
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brewery'
+        required: true
+      responses:
+        201:
+          content:
+            application/json: {}
+  /breweries/{breweryId}:
+    get:
+      summary: Get a Brewery
+      operationId: getBrewery
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Brewery'
+    put:
+      summary: Update a Brewery
+      operationId: updateBrewery
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Brewery'
+        required: true
+      responses:
+        202: {}
+    delete:
+      summary: Delete a Brewery
+      operationId: deleteBrewery
+      responses:
+        204: {}
+    parameters:
+    - name: breweryId
+      in: path
+      required: true
+      schema:
+        format: int32
+        type: integer
+  /breweries/{breweryId}/beers:
+    get:
+      summary: Get Beers from Brewery
+      operationId: getBreweryBeers
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Beer'
+    parameters:
+    - name: breweryId
+      in: path
+      required: true
+      schema:
+        format: int32
+        type: integer
+components:
+  schemas:
+    Beer:
+      title: Root Type for Beer
+      description: The root of the Beer type's schema.
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        breweryId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        style:
+          type: string
+        ibu:
+          format: int32
+          type: integer
+        ounces:
+          format: int32
+          type: integer
+        abv:
+          format: int32
+          type: integer
+    Brewery:
+      title: Root Type for Brewery
+      description: The root of the Brewery type's schema.
+      type: object
+      properties:
+        city:
+          type: string
+        state:
+          type: string
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+  securitySchemes:
+    Basic:
+      type: http
+      scheme: basic
+    OAuth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://www.example.org/auth/
+          refreshUrl: http://www.example.org/refresh/
+          scopes:
+            read:
+            write:
+            admin:
+security:
+- OAuth:
+  - read
+  - write
+tags:
+- name: Foo
+  description: This is bar.
