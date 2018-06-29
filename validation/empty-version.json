@@ -1,0 +1,35 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "description" : "Description goes here.",
+    "contact" : {
+      "name" : "Santa Clause",
+      "url" : "not-a-valid-url",
+      "email" : "not-a-valid-email"
+    }
+  },
+  "paths" : { },
+  "components" : {
+    "securitySchemes" : {
+      "OAuth" : {
+        "type" : "oauth2",
+        "flows" : {
+          "implicit" : {
+            "authorizationUrl" : "http://saldfjsaldfj",
+            "refreshUrl" : "http://alsfdjasldfj",
+            "scopes" : {
+              "aaa" : "",
+              "bbbb" : ""
+            }
+          }
+        }
+      }
+    }
+  },
+  "security" : [ {
+    "Basic" : [ ],
+    "Key" : [ ]
+  }, {
+    "Key" : [ ]
+  } ]
+}
