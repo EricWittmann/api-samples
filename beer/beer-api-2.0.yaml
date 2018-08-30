@@ -1,12 +1,20 @@
 ---
-swagger: '2.0'
+swagger: 2.0
 info:
   title: Beer API 2.0
   description: An OpenAPI 2.0 version of the Beer API.
+  contact:
+    name: API Owner
+    url: http://www.beers.com
+    email: beers@example.com
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   version: 1.0.0
+consumes:
+- application/json
+produces:
+- application/json
 paths:
   /beers:
     get:
@@ -220,8 +228,5 @@ definitions:
         type: string
 tags:
 - name: beer
-  description:
 - name: hops
-  description:
 - name: brewing
-  description:
