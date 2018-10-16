@@ -1,0 +1,93 @@
+---
+swagger: "2.0"
+info:
+  title: Another 2.0 API
+  description: Hello World.
+  version: 1.0.0
+consumes:
+- application/json
+- text/plain
+produces:
+- application/json
+paths:
+  /helicopters:
+    get:
+      summary: List All Helicopters
+      description: Gets a list of all `Helicopter` entities.
+      operationId: getHelicopters
+      parameters:
+      - name: qparam1
+        in: query
+      responses:
+        200:
+          description: Successful response - returns an array of `Helicopter` entities.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Helicopter'
+    post:
+      summary: Create a Helicopter
+      description: Creates a new instance of a `Helicopter`.
+      operationId: createHelicopter
+      parameters:
+      - name: fd1
+        in: formData
+      responses:
+        201:
+          description: Successful response.
+  /helicopters/{helicopterId}:
+    get:
+      summary: Get a Helicopter
+      description: Gets the details of a single instance of a `Helicopter`.
+      operationId: getHelicopter
+      responses:
+        200:
+          description: Successful response - returns a single `Helicopter`.
+          schema:
+            $ref: '#/definitions/Helicopter'
+          examples:
+            application/json: |-
+              {
+                  "make": "some text",
+                  "model": "some text",
+                  "size": 53
+              }
+    put:
+      summary: Update a Helicopter
+      description: Updates an existing `Helicopter`.
+      operationId: updateHelicopter
+      parameters:
+      - name: body
+        in: body
+        description: Updated `Helicopter` information.
+        required: true
+        schema:
+          $ref: '#/definitions/Helicopter'
+      responses:
+        202:
+          description: Successful response.
+    delete:
+      summary: Delete a Helicopter
+      description: Deletes an existing `Helicopter`.
+      operationId: deleteHelicopter
+      responses:
+        204:
+          description: Successful response.
+    parameters:
+    - name: helicopterId
+      in: path
+      description: A unique identifier for a `Helicopter`.
+      required: true
+      type: string
+definitions:
+  Helicopter:
+    required:
+    - model
+    - make
+    properties:
+      make:
+        type: string
+      model:
+        type: string
+      size:
+        type: integer
