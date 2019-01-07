@@ -1,0 +1,697 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "My Sample 3.0 API",
+    "description" : "",
+    "termsOfService" : "http://swagger.io/terms/",
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/pets" : {
+      "get" : {
+        "description" : "Returns all pets from the system that the user has access to\nNam sed condimentum est. Maecenas tempor sagittis sapien, nec rhoncus sem sagittis sit amet. Aenean at gravida augue, ac iaculis sem. Curabitur odio lorem, ornare eget elementum nec, cursus id lectus. Duis mi turpis, pulvinar ac eros ac, tincidunt varius justo. In hac habitasse platea dictumst. Integer at adipiscing ante, a sagittis ligula. Aenean pharetra tempor ante molestie imperdiet. Vivamus id aliquam diam. Cras quis velit non tortor eleifend sagittis. Praesent at enim pharetra urna volutpat venenatis eget eget mauris. In eleifend fermentum facilisis. Praesent enim enim, gravida ac sodales sed, placerat id erat. Suspendisse lacus dolor, consectetur non augue vel, vehicula interdum libero. Morbi euismod sagittis libero sed lacinia.\n\nSed tempus felis lobortis leo pulvinar rutrum. Nam mattis velit nisl, eu condimentum ligula luctus nec. Phasellus semper velit eget aliquet faucibus. In a mattis elit. Phasellus vel urna viverra, condimentum lorem id, rhoncus nibh. Ut pellentesque posuere elementum. Sed a varius odio. Morbi rhoncus ligula libero, vel eleifend nunc tristique vitae. Fusce et sem dui. Aenean nec scelerisque tortor. Fusce malesuada accumsan magna vel tempus. Quisque mollis felis eu dolor tristique, sit amet auctor felis gravida. Sed libero lorem, molestie sed nisl in, accumsan tempor nisi. Fusce sollicitudin massa ut lacinia mattis. Sed vel eleifend lorem. Pellentesque vitae felis pretium, pulvinar elit eu, euismod sapien.\n",
+        "operationId" : "findPets",
+        "parameters" : [ {
+          "name" : "tags",
+          "in" : "query",
+          "description" : "tags to filter by",
+          "required" : false,
+          "style" : "form",
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            }
+          }
+        }, {
+          "name" : "limit",
+          "in" : "query",
+          "description" : "maximum number of results to return",
+          "required" : false,
+          "schema" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "pet response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Pet"
+                  }
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "description" : "Creates a new pet in the store.  Duplicates are allowed",
+        "operationId" : "addPet",
+        "requestBody" : {
+          "description" : "Pet to add to the store",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/NewPet"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "pet response",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Pet"
+                }
+              }
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pets/{id}" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "Description of response 200."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "id",
+        "in" : "path",
+        "required" : true,
+        "schema" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string"
+          }
+        }
+      } ]
+    },
+    "/widgets" : {
+      "summary" : "Path used to manage the list of Widgets.",
+      "description" : "The REST endpoint/path used to list and create zero or more `Widget` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get" : {
+        "summary" : "List All Widgets",
+        "description" : "Gets a list of all `Widget` entities.",
+        "operationId" : "getWidgets",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Widget` entities.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Widget"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a Widget",
+        "description" : "Creates a new instance of a `Widget`.",
+        "operationId" : "createWidget",
+        "requestBody" : {
+          "description" : "A new `Widget` to be created.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Widget"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        }
+      }
+    },
+    "/widgets/{widgetId}" : {
+      "summary" : "Path used to manage a single Widget.",
+      "description" : "The REST endpoint/path used to get, update, and delete single instances of an `Widget`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get" : {
+        "tags" : [ "openapi" ],
+        "summary" : "Get a Widget",
+        "description" : "Gets the details of a single instance of a `Widget`.",
+        "operationId" : "getWidget",
+        "parameters" : [ {
+          "name" : "q1",
+          "in" : "query",
+          "description" : "asdfasdfasdf",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "widgetId",
+          "in" : "path",
+          "description" : "A unique identifier for a `Widget`.",
+          "required" : true,
+          "schema" : {
+            "type" : "array",
+            "items" : {
+              "type" : "boolean"
+            }
+          }
+        } ],
+        "requestBody" : {
+          "description" : "asdfasdfasdf",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "string"
+              },
+              "examples" : {
+                "Example-1" : {
+                  "value" : "{\n    \"foo\":\"bar\"\n}"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : { }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Widget",
+        "description" : "Updates an existing `Widget`.",
+        "operationId" : "updateWidget",
+        "requestBody" : {
+          "description" : "Updated `Widget` information.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Widget"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Widget",
+        "description" : "Deletes an existing `Widget`.",
+        "operationId" : "deleteWidget",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "widgetId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Widget`.",
+        "required" : true,
+        "schema" : {
+          "type" : "array",
+          "items" : {
+            "type" : "boolean"
+          }
+        }
+      }, {
+        "name" : "q1",
+        "in" : "query",
+        "required" : true,
+        "schema" : {
+          "type" : "number"
+        }
+      }, {
+        "name" : "q2",
+        "in" : "query",
+        "description" : "ggggggg",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/foos/{fooId}" : {
+      "summary" : "Path used to manage a single Foo.",
+      "description" : "The REST endpoint/path used to get, update, and delete single instances of an `Foo`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get" : {
+        "summary" : "Get a Foo",
+        "description" : "Gets the details of a single instance of a `Foo`.",
+        "operationId" : "getFoo",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Foo`.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Foo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Foo",
+        "description" : "Updates an existing `Foo`.",
+        "operationId" : "updateFoo",
+        "requestBody" : {
+          "description" : "Updated `Foo` information.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Foo"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Foo",
+        "description" : "Deletes an existing `Foo`.",
+        "operationId" : "deleteFoo",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "fooId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Foo`.",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/zombies" : {
+      "summary" : "Path used to manage the list of Zombies.",
+      "description" : "The REST endpoint/path used to list and create zero or more `Zombie` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get" : {
+        "summary" : "List All Zombies",
+        "description" : "Gets a list of all `Zombie` entities.",
+        "operationId" : "getZombies",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Zombie` entities.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Zombie"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a Zombie",
+        "description" : "Creates a new instance of a `Zombie`.",
+        "operationId" : "createZombie",
+        "requestBody" : {
+          "description" : "A new `Zombie` to be created.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Zombie"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        }
+      }
+    },
+    "/zombies/{zombieId}" : {
+      "summary" : "Path used to manage a single Zombie.",
+      "description" : "The REST endpoint/path used to get, update, and delete single instances of an `Zombie`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get" : {
+        "summary" : "Get a Zombie",
+        "description" : "Gets the details of a single instance of a `Zombie`.",
+        "operationId" : "getZombie",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Zombie`.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Zombie"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Zombie",
+        "description" : "Updates an existing `Zombie`.",
+        "operationId" : "updateZombie",
+        "requestBody" : {
+          "description" : "Updated `Zombie` information.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Zombie"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Zombie",
+        "description" : "Deletes an existing `Zombie`.",
+        "operationId" : "deleteZombie",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "zombieId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Zombie`.",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/mice" : {
+      "summary" : "Path used to manage the list of Mice.",
+      "description" : "The REST endpoint/path used to list and create zero or more `Mouse` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get" : {
+        "summary" : "List All Mice",
+        "description" : "Gets a list of all `Mouse` entities.",
+        "operationId" : "getMice",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Mouse` entities.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Mouse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a Mouse",
+        "description" : "Creates a new instance of a `Mouse`.",
+        "operationId" : "createMouse",
+        "requestBody" : { },
+        "responses" : {
+          "201" : {
+            "description" : "Successful response.",
+            "content" : {
+              "application/json" : { }
+            }
+          }
+        }
+      }
+    },
+    "/mice/{mouseId}" : {
+      "summary" : "Path used to manage a single Mouse.",
+      "description" : "The REST endpoint/path used to get, update, and delete single instances of an `Mouse`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get" : {
+        "summary" : "Get a Mouse",
+        "description" : "Gets the details of a single instance of a `Mouse`.",
+        "operationId" : "getMouse",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Mouse`.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Mouse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Mouse",
+        "description" : "Updates an existing `Mouse`.",
+        "operationId" : "updateMouse",
+        "requestBody" : {
+          "description" : "Updated `Mouse` information.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Mouse"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Mouse",
+        "description" : "Deletes an existing `Mouse`.",
+        "operationId" : "deleteMouse",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mouseId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Mouse`.",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      }, {
+        "name" : "qp1",
+        "in" : "query",
+        "schema" : { }
+      } ]
+    },
+    "/foos" : {
+      "summary" : "Path used to manage the list of Foos.",
+      "description" : "The REST endpoint/path used to list and create zero or more `Foo` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get" : {
+        "tags" : [ "foo", "bar" ],
+        "summary" : "List All Foos",
+        "description" : "Gets a list of all `Foo` entities.",
+        "operationId" : "getFoos",
+        "parameters" : [ {
+          "name" : "qparam1",
+          "in" : "query",
+          "description" : "Blah blarg blaherity vlah.",
+          "schema" : {
+            "enum" : [ "foo", "bar" ]
+          }
+        }, {
+          "name" : "qparam2",
+          "in" : "query",
+          "schema" : { }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Foo` entities....",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Error"
+                  }
+                },
+                "examples" : {
+                  "Example-1" : {
+                    "summary" : "The name of the Example goes here!",
+                    "description" : "A description of the example goes here and it will be very awesome!",
+                    "value" : "[\n    {\n        \"name\": \"some TETXT\",\n        \"tag\": \"some text\"\n    },\n    {\n        \"name\": \"some text\",\n        \"tag\": \"some text\"\n    }\n]"
+                  },
+                  "Example-2" : {
+                    "value" : "[\n    {\n        \"code\": 111,\n        \"message\": \"THE MESSAGE!\"\n    },\n    {\n        \"code\": 99,\n        \"message\": \"some text\"\n    }\n]"
+                  }
+                }
+              },
+              "text/xml" : { }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://{domain}.example.com:{port}/api",
+          "description" : "",
+          "variables" : {
+            "domain" : { },
+            "port" : { }
+          }
+        } ]
+      },
+      "post" : {
+        "summary" : "Create a Foo",
+        "description" : "Creates a new instance of a `Foo`.",
+        "operationId" : "createFoo",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Error"
+              },
+              "examples" : {
+                "asdfasdfsafd" : {
+                  "value" : "{\n    \"code\": 10,\n    \"message\": \"some text\"\n}"
+                }
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "qp1",
+        "in" : "query",
+        "schema" : { }
+      }, {
+        "name" : "qp2",
+        "in" : "query",
+        "schema" : { }
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Pet" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/NewPet"
+        }, {
+          "required" : [ "id" ],
+          "properties" : {
+            "id" : {
+              "format" : "int64",
+              "type" : "integer"
+            }
+          }
+        } ]
+      },
+      "NewPet" : {
+        "required" : [ "name" ],
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "tag" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Widget" : { },
+      "Zombie" : { },
+      "Mouse" : {
+        "properties" : {
+          "aaaa" : {
+            "$ref" : "#/components/schemas/Fo2"
+          }
+        }
+      },
+      "Error" : {
+        "required" : [ "code", "message" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "message" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Foo" : {
+        "type" : "object"
+      },
+      "FromExample" : {
+        "title" : "Root Type for FromExample",
+        "description" : "The root of the FromExample type's schema.",
+        "type" : "object",
+        "properties" : {
+          "foo" : {
+            "type" : "string"
+          }
+        },
+        "example" : "{\n    \"foo\": \"bar\"\n}"
+      }
+    }
+  }
+}
