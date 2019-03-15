@@ -1,0 +1,231 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "Simple API",
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/widgets" : {
+      "summary" : "Path used to manage the list of Widgets.",
+      "description" : "The REST endpoint/path used to list and create zero or more `Widget` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get" : {
+        "summary" : "List All Widgets",
+        "description" : "Gets a list of all `Widget` entities.",
+        "operationId" : "getWidgets",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Widget` entities.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Widget"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a Widget",
+        "description" : "Creates a new instance of a `Widget`.",
+        "operationId" : "createWidget",
+        "requestBody" : {
+          "description" : "A new `Widget` to be created.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Widget"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        }
+      }
+    },
+    "/widgets/{widgetId}" : {
+      "summary" : "Path used to manage a single Widget.",
+      "description" : "The REST endpoint/path used to get, update, and delete single instances of an `Widget`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get" : {
+        "summary" : "Get a Widget",
+        "description" : "Gets the details of a single instance of a `Widget`.",
+        "operationId" : "getWidget",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Widget`.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Widget"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Widget",
+        "description" : "Updates an existing `Widget`.",
+        "operationId" : "updateWidget",
+        "requestBody" : {
+          "description" : "Updated `Widget` information.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Widget"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Widget",
+        "description" : "Deletes an existing `Widget`.",
+        "operationId" : "deleteWidget",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "widgetId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Widget`.",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    },
+    "/dinners" : {
+      "summary" : "Path used to manage the list of Dinners.",
+      "description" : "The REST endpoint/path used to list and create zero or more `Dinner` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get" : {
+        "summary" : "List All Dinners",
+        "description" : "Gets a list of all `Dinner` entities.",
+        "operationId" : "getDinners",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Dinner` entities.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Dinner"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a Dinner",
+        "description" : "Creates a new instance of a `Dinner`.",
+        "operationId" : "createDinner",
+        "requestBody" : {
+          "description" : "A new `Dinner` to be created.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Dinner"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        }
+      }
+    },
+    "/dinners/{dinnerId}" : {
+      "summary" : "Path used to manage a single Dinner.",
+      "description" : "The REST endpoint/path used to get, update, and delete single instances of an `Dinner`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get" : {
+        "summary" : "Get a Dinner",
+        "description" : "Gets the details of a single instance of a `Dinner`.",
+        "operationId" : "getDinner",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Dinner`.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Dinner"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Dinner",
+        "description" : "Updates an existing `Dinner`.",
+        "operationId" : "updateDinner",
+        "requestBody" : {
+          "description" : "Updated `Dinner` information.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Dinner"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Dinner",
+        "description" : "Deletes an existing `Dinner`.",
+        "operationId" : "deleteDinner",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "dinnerId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Dinner`.",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Widget" : {
+        "type" : "object"
+      },
+      "Dinner" : {
+        "type" : "object"
+      }
+    }
+  }
+}
