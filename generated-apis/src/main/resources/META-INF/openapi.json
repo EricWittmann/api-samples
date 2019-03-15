@@ -1,0 +1,146 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "Simpler API",
+    "description" : "A simple API that I am using to test Generating a JAX-RS project.",
+    "license" : {
+      "name" : "GNU AGPLv3",
+      "url" : "https://www.gnu.org/licenses/agpl.txt"
+    },
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/mice" : {
+      "summary" : "Path used to manage the list of Mice.",
+      "description" : "The REST endpoint/path used to list and create zero or more `Mouse` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+      "get" : {
+        "summary" : "List All Mice",
+        "description" : "Gets a list of all `Mouse` entities.",
+        "operationId" : "getMice",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Mouse` entities.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Mouse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create a Mouse",
+        "description" : "Creates a new instance of a `Mouse`.",
+        "operationId" : "createMouse",
+        "requestBody" : {
+          "description" : "A new `Mouse` to be created.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Mouse"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        }
+      }
+    },
+    "/mice/{mouseId}" : {
+      "summary" : "Path used to manage a single Mouse.",
+      "description" : "The REST endpoint/path used to get, update, and delete single instances of an `Mouse`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+      "get" : {
+        "summary" : "Get a Mouse",
+        "description" : "Gets the details of a single instance of a `Mouse`.",
+        "operationId" : "getMouse",
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Mouse`.",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Mouse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update a Mouse",
+        "description" : "Updates an existing `Mouse`.",
+        "operationId" : "updateMouse",
+        "requestBody" : {
+          "description" : "Updated `Mouse` information.",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Mouse"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete a Mouse",
+        "description" : "Deletes an existing `Mouse`.",
+        "operationId" : "deleteMouse",
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "mouseId",
+        "in" : "path",
+        "description" : "A unique identifier for a `Mouse`.",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Mouse" : {
+        "title" : "Root Type for Mouse",
+        "description" : "The root of the Mouse type's schema.",
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "example" : "{\n    \"name\": \"Tim\",\n    \"size\": 17\n}"
+      }
+    }
+  },
+  "tags" : [ {
+    "name" : "simple",
+    "description" : ""
+  }, {
+    "name" : "generator",
+    "description" : ""
+  } ]
+}
