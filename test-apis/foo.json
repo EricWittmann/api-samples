@@ -1,0 +1,23 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "Foo API",
+    "version" : "1.0.1"
+  },
+  "components" : {
+    "schemas" : {
+      "ssss" : {
+        "type" : "object",
+        "properties" : {
+          "a" : {
+            "$ref" : "#/components/schemas/aaaa",
+            "description" : "Just an a."
+          }
+        }
+      },
+      "aaaa" : {
+        "type" : "object"
+      }
+    }
+  }
+}
