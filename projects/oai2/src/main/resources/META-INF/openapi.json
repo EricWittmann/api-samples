@@ -1,0 +1,213 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "OpenAPI 2",
+    "version" : "1.0.1",
+    "description" : "Hello World.",
+    "contact" : {
+      "name" : "Eric Wittmann",
+      "url" : "https://www.foo.com",
+      "email" : "e@ew.com"
+    },
+    "license" : {
+      "name" : "Mozilla 2.0",
+      "url" : "https://www.mozilla.org/en-US/MPL/2.0/"
+    }
+  },
+  "consumes" : [ "multipart/form-data", "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/bazs" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns an array of `Baz` entities.",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Baz"
+              }
+            }
+          }
+        },
+        "operationId" : "getBazs",
+        "summary" : "List All Bazs",
+        "description" : "Gets a list of all `Baz` entities."
+      },
+      "post" : {
+        "parameters" : [ {
+          "name" : "body",
+          "description" : "A new `Baz` to be created.",
+          "schema" : {
+            "$ref" : "#/definitions/Baz"
+          },
+          "in" : "body",
+          "required" : true
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Successful response."
+          }
+        },
+        "operationId" : "createBaz",
+        "summary" : "Create a Baz",
+        "description" : "Creates a new instance of a `Baz`."
+      }
+    },
+    "/bazs/{bazId}" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "Successful response - returns a single `Baz`.",
+            "schema" : {
+              "$ref" : "#/definitions/Baz"
+            }
+          }
+        },
+        "operationId" : "getBaz",
+        "summary" : "Get a Baz",
+        "description" : "Gets the details of a single instance of a `Baz`."
+      },
+      "put" : {
+        "parameters" : [ {
+          "name" : "body",
+          "description" : "Updated `Baz` information.",
+          "schema" : {
+            "$ref" : "#/definitions/Baz"
+          },
+          "in" : "body",
+          "required" : true
+        } ],
+        "responses" : {
+          "202" : {
+            "description" : "Successful response."
+          }
+        },
+        "operationId" : "updateBaz",
+        "summary" : "Update a Baz",
+        "description" : "Updates an existing `Baz`."
+      },
+      "delete" : {
+        "responses" : {
+          "204" : {
+            "description" : "Successful response."
+          }
+        },
+        "operationId" : "deleteBaz",
+        "summary" : "Delete a Baz",
+        "description" : "Deletes an existing `Baz`."
+      },
+      "parameters" : [ {
+        "name" : "bazId",
+        "description" : "A unique identifier for a `Baz`.",
+        "in" : "path",
+        "required" : true,
+        "type" : "string"
+      } ]
+    },
+    "/widgets" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "description" : "Request body.",
+          "schema" : {
+            "$ref" : "#/definitions/Baz"
+          },
+          "in" : "body",
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "asdfasdfasdfas",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Baz"
+              }
+            },
+            "examples" : {
+              "application/json" : [ {
+                "z1" : 81,
+                "x1" : true,
+                "v3" : "some text"
+              }, {
+                "z1" : 12,
+                "x1" : true,
+                "v3" : "some text"
+              } ]
+            }
+          }
+        }
+      },
+      "delete" : {
+        "responses" : {
+          "200" : {
+            "description" : "asdf asdf asf"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Foo" : {
+      "description" : "Hello foo.",
+      "required" : [ ],
+      "type" : "object",
+      "properties" : {
+        "p2" : {
+          "description" : "Hello p2",
+          "enum" : [ "v1", "v3" ]
+        }
+      },
+      "example" : {
+        "p2" : "v1"
+      }
+    },
+    "Bar" : {
+      "description" : "asfdasf asdf asf asf ",
+      "type" : "object"
+    },
+    "Baz" : {
+      "title" : "Root Type for Baz",
+      "description" : "Hello baz.",
+      "required" : [ "z1" ],
+      "type" : "object",
+      "properties" : {
+        "z1" : {
+          "format" : "int32",
+          "type" : "integer"
+        },
+        "x1" : {
+          "type" : "boolean"
+        },
+        "v3" : {
+          "description" : "asdf asdf asf ",
+          "type" : "string"
+        }
+      },
+      "example" : "{\n    \"z1\": 17,\n    \"x1\": true,\n    \"v3\": \"boob\"\n}"
+    }
+  },
+  "securityDefinitions" : {
+    "Basic" : {
+      "type" : "basic"
+    },
+    "OAuth" : {
+      "flow" : "implicit",
+      "authorizationUrl" : "http://192.168.1.20:10080/oauth/authorize",
+      "scopes" : {
+        "scope-1" : "",
+        "scope-2" : ""
+      },
+      "type" : "oauth2"
+    }
+  },
+  "security" : [ {
+    "Basic" : [ ]
+  } ],
+  "tags" : [ {
+    "name" : "tag2",
+    "description" : "asdfasfaf"
+  } ]
+}
