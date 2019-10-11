@@ -105,12 +105,19 @@
         "Beer": {
             "title": "Root Type for Beer",
             "description": "",
+            "required": [
+                "foo"
+            ],
             "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
                 },
                 "description": {
+                    "type": "string"
+                },
+                "foo": {
+                    "description": "",
                     "type": "string"
                 }
             },

@@ -3,6 +3,7 @@ package io.example.beer.beans;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyDescription;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -15,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
     "name",
-    "description"
+    "description",
+    "foo"
 })
 public class Beer {
 
@@ -23,6 +25,14 @@ public class Beer {
     private String name;
     @JsonProperty("description")
     private String description;
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("foo")
+    @JsonPropertyDescription("")
+    private String foo;
 
     @JsonProperty("name")
     public String getName() {
@@ -42,6 +52,26 @@ public class Beer {
     @JsonProperty("description")
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("foo")
+    public String getFoo() {
+        return foo;
+    }
+
+    /**
+     * 
+     * (Required)
+     * 
+     */
+    @JsonProperty("foo")
+    public void setFoo(String foo) {
+        this.foo = foo;
     }
 
 }
