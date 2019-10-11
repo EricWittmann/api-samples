@@ -2,9 +2,15 @@
     "swagger": "2.0",
     "info": {
         "title": "Demo API (2.0)",
-        "version": "1.0.0",
+        "version": "1.0.1",
         "description": "Just a demo."
     },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
     "paths": {
         "/beers": {
             "get": {
@@ -105,12 +111,19 @@
         "Beer": {
             "title": "Root Type for Beer",
             "description": "",
+            "required": [
+                "foo"
+            ],
             "type": "object",
             "properties": {
                 "name": {
                     "type": "string"
                 },
                 "description": {
+                    "type": "string"
+                },
+                "foo": {
+                    "description": "",
                     "type": "string"
                 }
             },
