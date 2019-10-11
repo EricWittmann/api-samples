@@ -1,0 +1,127 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Demo API (2.0)",
+        "version": "1.0.0",
+        "description": "Just a demo."
+    },
+    "paths": {
+        "/beers": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns an array of `Beer` entities.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Beer"
+                            }
+                        }
+                    }
+                },
+                "operationId": "getbeers",
+                "summary": "List All beers",
+                "description": "Gets a list of all `Beer` entities."
+            },
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "A new `Beer` to be created.",
+                        "schema": {
+                            "$ref": "#/definitions/Beer"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createBeer",
+                "summary": "Create a Beer",
+                "description": "Creates a new instance of a `Beer`."
+            }
+        },
+        "/beers/{beerId}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns a single `Beer`.",
+                        "schema": {
+                            "$ref": "#/definitions/Beer"
+                        }
+                    }
+                },
+                "operationId": "getBeer",
+                "summary": "Get a Beer",
+                "description": "Gets the details of a single instance of a `Beer`."
+            },
+            "put": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Updated `Beer` information.",
+                        "schema": {
+                            "$ref": "#/definitions/Beer"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateBeer",
+                "summary": "Update a Beer",
+                "description": "Updates an existing `Beer`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteBeer",
+                "summary": "Delete a Beer",
+                "description": "Deletes an existing `Beer`."
+            },
+            "parameters": [
+                {
+                    "name": "beerId",
+                    "description": "A unique identifier for a `Beer`.",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "Beer": {
+            "title": "Root Type for Beer",
+            "description": "",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "name": "Newcastle",
+                "description": "Crap"
+            }
+        },
+        "Error": {
+            "description": "",
+            "type": "object"
+        }
+    }
+}
