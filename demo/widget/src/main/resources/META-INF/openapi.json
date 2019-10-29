@@ -1,0 +1,165 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Widget API",
+        "version": "1.0.10",
+        "description": "Just adding a description to see if it shows up in Eric's demo.",
+        "contact": {
+            "name": "Andrew MacKenzie",
+            "url": "https://en.wikipedia.org/wiki/Scotland",
+            "email": "amac@blah.com"
+        },
+        "license": {
+            "name": "GNU LGPLv3",
+            "url": "https://www.gnu.org/licenses/lgpl.txt"
+        }
+    },
+    "paths": {
+        "/widgets": {
+            "summary": "Path used to manage the list of widgets.",
+            "description": "The REST endpoint/path used to list and create zero or more `Widget` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Widget"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Widget` entities."
+                    }
+                },
+                "operationId": "getWidgets",
+                "summary": "List All widgets",
+                "description": "Gets a list of all `Widget` entities!!!!"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Widget` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Widget"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createWidget",
+                "summary": "Create a Widget",
+                "description": "Creates a new instance of a `Widget`."
+            }
+        },
+        "/widgets/{widgetId}": {
+            "summary": "Path used to manage a single Widget.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Widget`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Widget"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Widget`."
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "getWidget",
+                "summary": "Get a Widget",
+                "description": "asldf jasl;df jas;ldf jas;ldf jasl;dfjlf kj"
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Widget` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Widget"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "updateWidget",
+                "summary": "Update a Widget",
+                "description": "Updates an existing `Widget`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteWidget",
+                "summary": "Delete a Widget",
+                "description": "Deletes an existing `Widget`."
+            },
+            "parameters": [
+                {
+                    "name": "widgetId",
+                    "description": "A unique identifier for a `Widget`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Widget": {
+                "title": "Root Type for Widget",
+                "description": "What is a widget!!",
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "size": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Widget 1",
+                    "size": 10
+                },
+                "x-something": "foo"
+            }
+        },
+        "responses": {
+            "NotFound": {
+                "description": ""
+            }
+        }
+    }
+}
