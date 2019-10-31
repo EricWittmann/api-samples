@@ -1,0 +1,13 @@
+{
+    "asyncapi": "2.0.0",
+    "info": {
+        "title": "My Async API (updated again)",
+        "version": "1.0.3",
+        "description": "This is my asynchronous API.",
+        "contact": {
+            "name": "Eric",
+            "url": "http://www.google.com",
+            "email": "eric.wittmann@gmail.com"
+        }
+    }
+}
