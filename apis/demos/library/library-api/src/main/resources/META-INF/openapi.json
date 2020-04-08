@@ -1,0 +1,308 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Library API",
+        "version": "1.0.0",
+        "description": "A simple API for managing authors and books.",
+        "contact": {
+            "name": "Eric Wittmann",
+            "email": "eric.wittmann@redhat.com"
+        },
+        "license": {
+            "name": "Mozilla 2.0",
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/"
+        }
+    },
+    "paths": {
+        "/authors": {
+            "summary": "Path used to manage the list of authors.",
+            "description": "The REST endpoint/path used to list and create zero or more `Author` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Author"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Author` entities."
+                    }
+                },
+                "operationId": "getauthors",
+                "summary": "List All authors",
+                "description": "Gets a list of all `Author` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Author` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Author"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createAuthor",
+                "summary": "Create a Author",
+                "description": "Creates a new instance of a `Author`."
+            }
+        },
+        "/authors/{authorId}": {
+            "summary": "Path used to manage a single Author.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Author`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "tags": [
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Author"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Author`."
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "getAuthor",
+                "summary": "Get a Author",
+                "description": "Gets the details of a single instance of a `Author`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Author` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Author"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "updateAuthor",
+                "summary": "Update a Author",
+                "description": "Updates an existing `Author`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    }
+                },
+                "operationId": "deleteAuthor",
+                "summary": "Delete a Author",
+                "description": "Deletes an existing `Author`."
+            },
+            "parameters": [
+                {
+                    "name": "authorId",
+                    "description": "A unique identifier for a `Author`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/books": {
+            "summary": "Path used to manage the list of books.",
+            "description": "The REST endpoint/path used to list and create zero or more `Book` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Book"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Book` entities."
+                    }
+                },
+                "operationId": "getbooks",
+                "summary": "List All books",
+                "description": "Gets a list of all `Book` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Book` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createBook",
+                "summary": "Create a Book",
+                "description": "Creates a new instance of a `Book`."
+            }
+        },
+        "/books/{bookId}": {
+            "summary": "Path used to manage a single Book.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Book`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Book"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Book`."
+                    }
+                },
+                "operationId": "getBook",
+                "summary": "Get a Book",
+                "description": "Gets the details of a single instance of a `Book`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Book` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateBook",
+                "summary": "Update a Book",
+                "description": "Updates an existing `Book`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteBook",
+                "summary": "Delete a Book",
+                "description": "Deletes an existing `Book`."
+            },
+            "parameters": [
+                {
+                    "name": "bookId",
+                    "description": "A unique identifier for a `Book`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Author": {
+                "title": "Root Type for Author",
+                "description": "The author of a book.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "dob": {
+                        "format": "date",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": "jk-rowling",
+                    "name": "JK Rowling",
+                    "dob": "1968-01-01"
+                }
+            },
+            "Book": {
+                "title": "Root Type for Book",
+                "description": "Information about a book.",
+                "type": "object",
+                "properties": {
+                    "ddsn": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "author": {
+                        "$ref": "#/components/schemas/Author"
+                    },
+                    "publish-date": {
+                        "format": "date",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "ddsn": "632.4",
+                    "title": "SQL For Dummies",
+                    "publish-date": "2001-05-13"
+                }
+            }
+        },
+        "responses": {
+            "NotFound": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "description": "Generic response when not found."
+            }
+        }
+    }
+}
