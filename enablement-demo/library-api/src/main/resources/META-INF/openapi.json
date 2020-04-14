@@ -1,0 +1,147 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Library API",
+        "version": "0.8",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "paths": {
+        "/authors": {
+            "summary": "Path used to manage the list of authors.",
+            "description": "The REST endpoint/path used to list and create zero or more `Author` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Author"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Author` entities."
+                    }
+                },
+                "operationId": "getAuthors",
+                "summary": "List All Authors",
+                "description": "Gets a list of all `Author` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Author` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Author"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createAuthor",
+                "summary": "Create a Author",
+                "description": "Creates a new instance of a `Author`."
+            }
+        },
+        "/authors/{authorId}": {
+            "summary": "Path used to manage a single Author.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Author`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Author"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Author`."
+                    }
+                },
+                "operationId": "getAuthor",
+                "summary": "Get a Author",
+                "description": "Gets the details of a single instance of a `Author`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Author` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Author"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateAuthor",
+                "summary": "Update a Author",
+                "description": "Updates an existing `Author`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteAuthor",
+                "summary": "Delete a Author",
+                "description": "Deletes an existing `Author`."
+            },
+            "parameters": [
+                {
+                    "name": "authorId",
+                    "description": "A unique identifier for a `Author`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Author": {
+                "title": "Root Type for Author",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "dob": {
+                        "format": "date",
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": "poe",
+                    "name": "Edgar Allan Poe",
+                    "dob": "1809-01-19"
+                }
+            }
+        }
+    }
+}
