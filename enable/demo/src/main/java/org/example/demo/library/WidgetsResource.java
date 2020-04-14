@@ -31,6 +31,9 @@ public interface WidgetsResource {
   @Consumes("application/json")
   void createWidget(Widget data);
 
+  @DELETE
+  void deleteAllWidgets();
+
   /**
    * Gets the details of a single instance of a `Widget`.
    */

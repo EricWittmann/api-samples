@@ -284,6 +284,15 @@
                 "operationId": "createWidget",
                 "summary": "Create a Widget",
                 "description": "Creates a new instance of a `Widget`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+
+                    }
+                },
+                "operationId": "deleteAllWidgets",
+                "summary": "deleteAllWidgets"
             }
         },
         "/widgets/{widgetId}": {
