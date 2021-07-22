@@ -1,0 +1,260 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Petstore",
+        "version": "1.0.5",
+        "description": "This is a sample server Petstore server. You can find out more about Swagger at http://swagger.io or on irc.freenode.net, #swagger. For this sample, you can use the api key special-key to test the authorization filters.\n",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "paths": {
+        "/store/inventory": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Pet"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response."
+                    }
+                },
+                "summary": "Get store inventory"
+            }
+        },
+        "/store/order": {
+            "post": {
+                "summary": "Place an order for a pet"
+            }
+        },
+        "/pet": {
+            "summary": "Path used to manage the list of pets.",
+            "description": "The REST endpoint/path used to list and create zero or more `Pet` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Pet"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Pet` entities."
+                    }
+                },
+                "operationId": "getPets",
+                "summary": "List All Pets",
+                "description": "Gets a list of all `Pet` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Pet` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Pet"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createPet",
+                "summary": "Create a Pet",
+                "description": "Creates a new instance of a `Pet`."
+            }
+        },
+        "/pet/{petId}": {
+            "summary": "Path used to manage a single Pet.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Pet`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Pet"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Pet`."
+                    }
+                },
+                "operationId": "getPet",
+                "summary": "Get a Pet",
+                "description": "Gets the details of a single instance of a `Pet`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Pet` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Pet"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updatePet",
+                "summary": "Update a Pet",
+                "description": "Updates an existing `Pet`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deletePet",
+                "summary": "Delete a Pet",
+                "description": "Deletes an existing `Pet`."
+            },
+            "parameters": [
+                {
+                    "name": "petId",
+                    "description": "A unique identifier for a `Pet`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/pet/{petId}/uploadImage": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+
+                            }
+                        },
+                        "description": "successful operation\n"
+                    }
+                },
+                "summary": "uploads an image"
+            }
+        },
+        "/pet/findByStatus": {
+
+        },
+        "/store/order/{orderId}": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "orderId",
+                        "description": "Find purchase order by ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "summary": "Find purchase order by ID"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Pet": {
+                "title": "Root Type for Pet",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "category": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": "123",
+                    "category": "foo",
+                    "name": "Pet"
+                }
+            },
+            "ErrorInfo": {
+                "title": "Root Type for ErrorInfo",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "code": 404,
+                    "message": "Not found."
+                }
+            },
+            "Order": {
+                "description": "",
+                "required": [
+                    "id"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": ""
+                    },
+                    "petId": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "responses": {
+            "NotFound": {
+                "description": ""
+            },
+            "ServerError": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorInfo"
+                        }
+                    }
+                },
+                "description": ""
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Commerce",
+            "description": ""
+        }
+    ]
+}
