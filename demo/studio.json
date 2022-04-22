@@ -1,0 +1,461 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Apicurio Studio API",
+        "version": "0.2.16.Final",
+        "description": "The back-end REST API for Apicurio!",
+        "contact": {
+            "name": "Eric Wittmann",
+            "url": "http://www.apicur.io/",
+            "email": "eric.wittmann@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://studio-api.apicur.io/",
+            "description": ""
+        }
+    ],
+    "paths": {
+        "/designs": {
+            "summary": "Manage All APIs",
+            "description": "Path/endpoint used to manage the user's list of APIs (get a list of APIs, create \na new API, import an existing API).",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApiDesign"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "When successful, returns a list of API designs available to the authenticated user."
+                    }
+                },
+                "operationId": "listDesigns",
+                "summary": "List API Designs",
+                "description": "Lists all API designs for the user."
+            },
+            "put": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ImportApiDesign"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiDesign"
+                                }
+                            }
+                        },
+                        "description": "Upon successfully importing the API, information about the newly added API design\nin Apicurio will be returned."
+                    }
+                },
+                "operationId": "importDesign",
+                "summary": "Import API Design",
+                "description": "Used to import an API design into Apicurio"
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewApiDesign"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiDesign"
+                                }
+                            }
+                        },
+                        "description": "If successful, returns information about the newly created API design."
+                    }
+                },
+                "operationId": "createDesign",
+                "summary": "Create API Design",
+                "description": "Creates a new (empty) API design in Apicurio."
+            }
+        },
+        "/designs/{designId}": {
+            "summary": "Manage a Single API",
+            "description": "Endpoint/path used to manage the details about a single API design by its unique\nidentifier.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ApiDesign"
+                                }
+                            }
+                        },
+                        "description": "Succesful response returns information about the A"
+                    }
+                },
+                "operationId": "getDesign",
+                "summary": "Get API Design Details",
+                "description": "Gets information about a single API design."
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "If successful, the API will be deleted an an empty 200 response will be returned."
+                    }
+                },
+                "operationId": "deleteDesign",
+                "summary": "Delete an API Design",
+                "description": "Delets a single API design from Apicurio."
+            },
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/contributors": {
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/publications": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "start",
+                        "description": "Index of the last item in the result set to fetch.  Defaults to 20.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    },
+                    {
+                        "name": "end",
+                        "description": "Index of the first item in the result set to fetch.  Defaults to 0.",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ApiPublication"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "A successful response returns an array of `ApiPublication` items."
+                    }
+                },
+                "operationId": "getPublications",
+                "summary": "Get API Publications",
+                "description": "Endpoint used to get a list of all publications for an API."
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/NewApiPublication"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "On a successful publish, returns an empty `201` response."
+                    }
+                },
+                "operationId": "publishApi",
+                "summary": "Publish an API",
+                "description": "Endpoint used to publish an API to a git repository such as GitLab, GitHub, or \nBitbucket.   The user must have at least one linked account set up for this \noperation to work."
+            },
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/content": {
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/invitations": {
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/collaborators": {
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/activity": {
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/invitations/{inviteId}": {
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                },
+                {
+                    "name": "inviteId",
+                    "description": "The unique ID of a single invitation.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/designs/{designId}/collaborators/{userId}": {
+            "parameters": [
+                {
+                    "name": "designId",
+                    "description": "The unique ID of an API design.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                },
+                {
+                    "name": "userId",
+                    "description": "The User ID of the collaborator.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "ImportApiDesign": {
+                "title": "Root Type for ImportApiDesign",
+                "description": "The root of the ImportApiDesign type's schema.",
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "description": "Pass in a URL to the API content (can be either JSON or YAML).  Mutually exclusive\nwith the `data` property.",
+                        "type": "string"
+                    },
+                    "data": {
+                        "description": "Pass in the content of the API design (in either YAML or JSON format) encoded\nusing base64.  Mutually exclusive with the `url` property.",
+                        "type": "string"
+                    }
+                },
+                "example": "{\n    \"data\": \"ewogICAgIm9wZW5hcGkiOiAiMy4wLjIiCn0K\"\n}"
+            },
+            "ApiDesign": {
+                "title": "Root Type for ApiDesign",
+                "description": "The root of the ApiDesign type's schema.",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "type": "string"
+                    },
+                    "createdOn": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": "{\n    \"id\": \"12345\",\n    \"name\": \"My Great API\",\n    \"description\": \"The description of my great API.\",\n    \"createdBy\": \"first.last@gmail.com\",\n    \"createdOn\": \"2018-03-27T09:33:00Z\",\n    \"tags\": [\n        \"tag-1\", \"tag-2\", \"tag-3\"\n    ]\n}"
+            },
+            "NewApiDesign": {
+                "title": "Root Type for NewApiDesign",
+                "description": "The root of the NewApiDesign type's schema.",
+                "type": "object",
+                "properties": {
+                    "specVersion": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": "{\n    \"specVersion\": \"3.0.2\",\n    \"name\": \"My New API\",\n    \"description\": \"The description of my new API.\"\n}"
+            },
+            "ApiPublication": {
+                "title": "Root Type for ApiPublication",
+                "description": "The root of the ApiPublication type's schema.",
+                "type": "object",
+                "properties": {
+                    "by": {
+                        "type": "string"
+                    },
+                    "on": {
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "info": {
+                        "type": "string"
+                    }
+                },
+                "example": "{\n    \"by\": \"user@email-address.com\",\n    \"on\": \"2018-02-10T07:30:00Z\",\n    \"info\": \"some info string\"\n}"
+            },
+            "NewApiPublication": {
+                "title": "Root Type for NewApiPublication",
+                "description": "The root of the NewApiPublication type's schema.",
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string"
+                    },
+                    "org": {
+                        "type": "string"
+                    },
+                    "repo": {
+                        "type": "string"
+                    },
+                    "team": {
+                        "type": "string"
+                    },
+                    "group": {
+                        "type": "string"
+                    },
+                    "project": {
+                        "type": "string"
+                    },
+                    "branch": {
+                        "type": "string"
+                    },
+                    "resource": {
+                        "type": "string"
+                    },
+                    "format": {
+                        "type": "string"
+                    },
+                    "commitMessage": {
+                        "type": "string"
+                    }
+                },
+                "example": "{\n    \"type\": \"GitHub\",\n    \"org\": \"SampleOrg\",\n    \"repo\": \"ApiDesignRepo\",\n    \"branch\": \"master\",\n    \"resource\": \"/path/to/apis/sample-api.yaml\",\n    \"format\": \"YAML\",\n    \"commitMessage\": \"Publishing API to my API design repository!\"\n}"
+            }
+        },
+        "securitySchemes": {
+            "KeycloakOAuth": {
+                "openIdConnectUrl": "https://studio-auth.apicur.io/auth/realms/apicurio/protocol/openid-connect/token",
+                "type": "openIdConnect",
+                "description": ""
+            }
+        }
+    },
+    "security": [
+        {
+            "KeycloakOAuth": [
+            ]
+        }
+    ]
+}
